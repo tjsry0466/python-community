@@ -1,6 +1,10 @@
-from django.urls import path
+from django.urls import include, path
+from . import views
 
-app_name ='accounts'
+app_name = 'accounts'
 urlpatterns = [
-    path('', views.index, name='index')
+    path('', include('django.contrib.auth.urls')),
+    path('register/', views.UserCreateView.as_view(), name='register'),
+    path('register/done/',
+         views.UserCreateDoneTemplateView.as_view(), name='register_done'),
 ]
